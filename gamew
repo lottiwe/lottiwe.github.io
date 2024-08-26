@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fishing Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Fishing Game</h1>
+    <div id="gameArea">
+        <div id="fishingLine"></div>
+        <button id="castButton">Cast Line</button>
+        <div id="message"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Homepage</title>
+   <!-- Link to the homepage.css file -->
+   <link rel="stylesheet" href="homepage.css">
+</head>
+<body>
+   <h1>Welcome to My Homepage</h1>
+   <p>This is a sample homepage.</p>
+</body>
+</html>
