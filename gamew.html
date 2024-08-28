@@ -3,16 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fishing Game</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Fish Clicker Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #aeeeee;
+        }
+        #fish {
+            width: 100px;
+            cursor: pointer;
+        }
+        #score, #upgrade {
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+        #upgradeButton {
+            font-size: 1em;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h1>Fishing Game</h1>
-    <div id="gameArea">
-        <div id="fishingLine"></div>
-        <button id="castButton">Cast Line</button>
-        <div id="message"></div>
+    <h1>Fish Clicker Game</h1>
+    <img id="fish" src="https://example.com/fish.png" alt="Fish">
+    <div id="score">Score: 0</div>
+    <div id="upgrade">
+        <button id="upgradeButton">Upgrade Fish (Cost: 10 Points)</button>
+        <div id="upgradeMessage"></div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        let score = 0;
+        let fishValue = 1;
+        const upgradeCost = 10;
+        const fishImg = document.getElementById('fish');
+        const scoreDisplay = document.getElementById('score');
+        const upgradeButton = document.getElementById('upgradeButton');
+        const upgradeMessage = document.getElementById('upgradeMessage');
+
+        // Function to handle fish click
+        function clickFish() {
+            score += fishValue;
+            scoreDisplay.textContent = 'Score: ' + score;
+        }
+
+        // Function to handle upgrade button click
+        function upgradeFish() {
+            if (score >= upgradeCost) {
+                score -= upgradeCost;
+                fishValue++;
+                upgradeCost *= 2;
+                upgradeButton.textContent = `Upgrade Fish (Cost: ${upgradeCost} Points)`;
+                scoreDisplay.textContent = 'Score: ' + score;
+                upgradeMessage.textContent = 'Upgrade successful! Fish value is now: ' + fishValue;
+            } else {
+                upgradeMessage.textContent = 'Not enough points to upgrade.';
+            }
+        }
+
+        // Set up event listeners
+        fishImg.addEventListener('click', clickFish);
+        upgradeButton.addEventListener('click', upgradeFish);
+    </script>
 </body>
 </html>
