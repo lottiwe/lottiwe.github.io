@@ -14,15 +14,23 @@
         #fish {
             width: 100px;
             cursor: pointer;
+            transition: transform 0.1s;
         }
-        #score, #upgrade {
+        #fish:hover {
+            transform: scale(1.1);
+        }
+        #score, #shop, #abilities {
             margin-top: 20px;
             font-size: 1.5em;
         }
-        #upgradeButton {
+        #shopButton, #abilityButton {
             font-size: 1em;
             padding: 10px;
             cursor: pointer;
+            margin-top: 10px;
+        }
+        .shop-item, .ability-item {
+            margin: 10px 0;
         }
     </style>
 </head>
@@ -30,43 +38,97 @@
     <h1>Fish Clicker Game</h1>
     <img id="fish" src="https://example.com/fish.png" alt="Fish">
     <div id="score">Score: 0</div>
-    <div id="upgrade">
-        <button id="upgradeButton">Upgrade Fish (Cost: 10 Points)</button>
-        <div id="upgradeMessage"></div>
+    <div id="shop">
+        <h2>Shop</h2>
+        <div class="shop-item">
+            <button id="buyPerson1">Buy Fisherman (Cost: 20 Points)</button>
+            <div id="person1Message"></div>
+        </div>
+        <div class="shop-item">
+            <button id="buyPerson2">Buy Mermaid (Cost: 50 Points)</button>
+            <div id="person2Message"></div>
+        </div>
+        <div class="shop-item">
+            <button id="buyPerson3">Buy Fisher Queen (Cost: 100 Points)</button>
+            <div id="person3Message"></div>
+        </div>
+    </div>
+    <div id="abilities">
+        <h2>Abilities</h2>
+        <button id="buyAbility1">Buy Double Click Power (Cost: 30 Points)</button>
+        <div id="ability1Message"></div>
     </div>
 
     <script>
         let score = 0;
         let fishValue = 1;
-        const upgradeCost = 10;
+        let clickMultiplier = 1;
+        let fishermanOwned = false;
+        let mermaidOwned = false;
+        let fisherQueenOwned = false;
+        let doubleClickPower = false;
+
         const fishImg = document.getElementById('fish');
         const scoreDisplay = document.getElementById('score');
-        const upgradeButton = document.getElementById('upgradeButton');
-        const upgradeMessage = document.getElementById('upgradeMessage');
+        const person1Message = document.getElementById('person1Message');
+        const person2Message = document.getElementById('person2Message');
+        const person3Message = document.getElementById('person3Message');
+        const ability1Message = document.getElementById('ability1Message');
 
         // Function to handle fish click
         function clickFish() {
-            score += fishValue;
+            score += fishValue * clickMultiplier;
             scoreDisplay.textContent = 'Score: ' + score;
         }
 
-        // Function to handle upgrade button click
-        function upgradeFish() {
-            if (score >= upgradeCost) {
-                score -= upgradeCost;
-                fishValue++;
-                upgradeCost *= 2;
-                upgradeButton.textContent = `Upgrade Fish (Cost: ${upgradeCost} Points)`;
+        // Function to handle buying people
+        function buyPerson(person, cost, ownedFlag, messageElement) {
+            if (score >= cost && !ownedFlag) {
+                score -= cost;
+                ownedFlag = true;
+                messageElement.textContent = 'You now own this person!';
+                updateFishValue();
                 scoreDisplay.textContent = 'Score: ' + score;
-                upgradeMessage.textContent = 'Upgrade successful! Fish value is now: ' + fishValue;
+            } else if (ownedFlag) {
+                messageElement.textContent = 'You already own this person.';
             } else {
-                upgradeMessage.textContent = 'Not enough points to upgrade.';
+                messageElement.textContent = 'Not enough points to buy this person.';
             }
         }
 
-        // Set up event listeners
+        function updateFishValue() {
+            if (fishermanOwned) {
+                fishValue = 2;
+            }
+            if (mermaidOwned) {
+                fishValue = 3;
+            }
+            if (fisherQueenOwned) {
+                fishValue = 5;
+            }
+        }
+
+        // Function to handle buying abilities
+        function buyAbility(ability, cost, messageElement) {
+            if (score >= cost && !doubleClickPower) {
+                score -= cost;
+                doubleClickPower = true;
+                messageElement.textContent = 'Ability purchased!';
+                clickMultiplier = 2;
+                scoreDisplay.textContent = 'Score: ' + score;
+            } else if (doubleClickPower) {
+                messageElement.textContent = 'You already own this ability.';
+            } else {
+                messageElement.textContent = 'Not enough points to buy this ability.';
+            }
+        }
+
+        // Event listeners
         fishImg.addEventListener('click', clickFish);
-        upgradeButton.addEventListener('click', upgradeFish);
+        document.getElementById('buyPerson1').addEventListener('click', () => buyPerson('fisherman', 20, fishermanOwned, person1Message));
+        document.getElementById('buyPerson2').addEventListener('click', () => buyPerson('mermaid', 50, mermaidOwned, person2Message));
+        document.getElementById('buyPerson3').addEventListener('click', () => buyPerson('fisherQueen', 100, fisherQueenOwned, person3Message));
+        document.getElementById('buyAbility1').addEventListener('click', () => buyAbility('doubleClick', 30, ability1Message));
     </script>
 </body>
 </html>
