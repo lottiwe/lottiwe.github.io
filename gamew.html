@@ -1,7 +1,4 @@
-0px 10px rgba(0, 0, 0, 0.1);
-            position: absolute;
-            top: 50px;
-            right: 150px; /* F<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -43,7 +40,10 @@
             padding: 20px;
             background-color: #ffffff;
             border-radius: 10px;
-            box-shadow: 0px urther to the right */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 50px;
+            right: 150px; /* Further to the right */
             width: 300px;
             text-align: center;
         }
@@ -76,9 +76,47 @@
             height: auto;
             margin: 5px;
         }
+        /* Navigation menu styles */
+        nav {
+            background-color: #ffffff;
+            border-bottom: 2px solid #000;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            text-align: center;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #000;
+            font-size: 1.2em;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    
     <h1>Fish Clicker Game</h1>
     <img id="fish" src="https://th.bing.com/th/id/OIP.pMhCqi-45Jkx2Xl6BBbBxAHaE8?w=297&h=198&c=7&r=0&o=5&pid=1.7" alt="Fish">
     <button id="shopButton">Open Shop</button>
@@ -91,7 +129,7 @@
         <h2>Shop</h2>
         <div class="shop-item">
             <img src="https://images.halloweencostumes.eu/products/44059/1-1/mens-fisherman-kit-costume.jpg" alt="Fisherman">
-            <p> fisherman </p>
+            <p>Fisherman</p>
             <button id="buyPerson1">Buy Fisherman (Cost: 20 Points)</button>
             <div id="person1Message"></div>
         </div>
@@ -104,7 +142,7 @@
         <div class="shop-item">
             <img src="https://th.bing.com/th/id/OIP.gPI_JyfPNFzzbNiSL8ad5AHaGn?w=174&h=183&c=7&r=0&o=5&pid=1.7" alt="Fisher Queen">
             <p>Fisher Queen</p>
-            <button id="buyPerson3">Buy the goldern Fishing men (Cost: 100 Points)</button>
+            <button id="buyPerson3">Buy the Golden Fishermen (Cost: 100 Points)</button>
             <div id="person3Message"></div>
         </div>
         <div class="ability-item">
@@ -176,26 +214,4 @@
                 score -= cost;
                 doubleClickPower = true;
                 messageElement.textContent = 'Ability purchased!';
-                clickMultiplier = 2;
-                scoreDisplay.textContent = 'Score: ' + score;
-            } else if (doubleClickPower) {
-                messageElement.textContent = 'You already own this ability.';
-            } else {
-                messageElement.textContent = 'Not enough points to buy this ability.';
-            }
-        }
-
-        function toggleShopMenu() {
-            shopMenu.style.display = shopMenu.style.display === 'none' || shopMenu.style.display === '' ? 'block' : 'none';
-        }
-
-        fishImg.addEventListener('click', clickFish);
-        shopButton.addEventListener('click', toggleShopMenu);
-        closeShopButton.addEventListener('click', toggleShopMenu);
-        document.getElementById('buyPerson1').addEventListener('click', () => buyPerson('fisherman', 20, fishermanOwned, person1Message, 'https://example.com/fisherman.png', 'Fisherman'));
-        document.getElementById('buyPerson2').addEventListener('click', () => buyPerson('mermaid', 50, mermaidOwned, person2Message, 'https://example.com/mermaid.png', 'Mermaid'));
-        document.getElementById('buyPerson3').addEventListener('click', () => buyPerson('fisherQueen', 100, fisherQueenOwned, person3Message, 'https://example.com/fisherQueen.png', 'Fisher Queen'));
-        document.getElementById('buyAbility1').addEventListener('click', () => buyAbility('doubleClick', 30, ability1Message));
-    </script>
-</body>
-</html>
+                clickMultiplier
