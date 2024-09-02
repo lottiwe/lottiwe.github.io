@@ -214,4 +214,28 @@
                 score -= cost;
                 doubleClickPower = true;
                 messageElement.textContent = 'Ability purchased!';
-                clickMultiplier
+                clickMultiplier = 2;  // Enable double click power
+                scoreDisplay.textContent = 'Score: ' + score;
+            } else if (doubleClickPower) {
+                messageElement.textContent = 'You already own this ability.';
+            } else {
+                messageElement.textContent = 'Not enough points to buy this ability.';
+            }
+        }
+
+        function toggleShopMenu() {
+            shopMenu.style.display = shopMenu.style.display === 'none' || shopMenu.style.display === '' ? 'block' : 'none';
+        }
+
+        // Event listeners
+        fishImg.addEventListener('click', clickFish);
+        shopButton.addEventListener('click', toggleShopMenu);
+        closeShopButton.addEventListener('click', toggleShopMenu);
+        document.getElementById('buyPerson1').addEventListener('click', () => buyPerson('fisherman', 20, fishermanOwned, person1Message, 'https://images.halloweencostumes.eu/products/44059/1-1/mens-fisherman-kit-costume.jpg', 'Fisherman'));
+        document.getElementById('buyPerson2').addEventListener('click', () => buyPerson('mermaid', 50, mermaidOwned, person2Message, 'https://th.bing.com/th/id/OIP.8VNhvL5pOmgYtWqPAIvXIwHaLG?w=125&h=187&c=7&r=0&o=5&pid=1.7', 'Mermaid'));
+        document.getElementById('buyPerson3').addEventListener('click', () => buyPerson('fisherQueen', 100, fisherQueenOwned, person3Message, 'https://th.bing.com/th/id/OIP.gPI_JyfPNFzzbNiSL8ad5AHaGn?w=174&h=183&c=7&r=0&o=5&pid=1.7', 'Fisher Queen'));
+        document.getElementById('buyAbility1').addEventListener('click', () => buyAbility('doubleClick', 30, ability1Message));
+    </script>
+</body>
+</html>
+
