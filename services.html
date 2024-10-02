@@ -56,7 +56,54 @@
             padding: 10px;
             text-align: center;
             border-top: 2px solid #444;
-            /* Removed fixed positioning */
+        }
+        /* Chatbot styles */
+        .chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            display: none; /* Hidden by default */
+            flex-direction: column;
+        }
+        .chatbot-header {
+            background-color: #444;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .chatbot-messages {
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+        .chatbot-input {
+            display: flex;
+            padding: 5px;
+        }
+        .chatbot-input input {
+            flex-grow: 1;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .chatbot-input button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #444;
+            color: #fff;
+            cursor: pointer;
+        }
+        .chatbot-input button:hover {
+            background-color: #575757;
         }
     </style>
 </head>
@@ -93,8 +140,57 @@
         <h3>5. Customized Packages</h3>
         <p>We can create customized packages tailored to your specific needs, whether for a special occasion or regular outings.</p>
     </div>
+    
+    <!-- Chatbot -->
+    <div class="chatbot" id="chatbot">
+        <div class="chatbot-header">Chat with Us!</div>
+        <div class="chatbot-messages" id="chatbot-messages"></div>
+        <div class="chatbot-input">
+            <input type="text" id="chat-input" placeholder="Type your message..." />
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+    
     <footer>
         <p>&copy; 2024 Indis Fishery. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Show/hide the chatbot
+        const chatbot = document.getElementById('chatbot');
+        const chatInput = document.getElementById('chat-input');
+        const sendBtn = document.getElementById('send-btn');
+        const chatMessages = document.getElementById('chatbot-messages');
+
+        // Function to toggle chatbot visibility
+        function toggleChatbot() {
+            chatbot.style.display = chatbot.style.display === 'none' ? 'flex' : 'none';
+        }
+
+        // Add a simple event listener to the button
+        sendBtn.addEventListener('click', function() {
+            const message = chatInput.value;
+            if (message.trim() === "") return;
+
+            // Append user's message
+            const userMessage = document.createElement('div');
+            userMessage.textContent = "You: " + message;
+            chatMessages.appendChild(userMessage);
+
+            // Clear input
+            chatInput.value = '';
+
+            // Simulate bot response (this can be improved with actual logic)
+            setTimeout(() => {
+                const botMessage = document.createElement('div');
+                botMessage.textContent = "Bot: Thanks for your message! How can I assist you further?";
+                chatMessages.appendChild(botMessage);
+                chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
+            }, 1000);
+        });
+
+        // Show the chatbot by default (optional)
+        toggleChatbot();
+    </script>
 </body>
 </html>
