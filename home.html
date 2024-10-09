@@ -108,4 +108,78 @@
     </style>
 </head>
 <body>
-   
+    <header>
+        <h1>Indis Fishery</h1>
+        <p>Proudly operating since 2009</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="game.html">Fish Clicker</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h2>About Me</h2>
+        <p>I am an experienced fisher with a great team that has been doing this for a long time. Our dedication to quality and sustainability drives everything we do.</p>
+        
+        <h2>Services</h2>
+        <p>We offer a wide range of services, including catering for parties and events, boat rentals, and a fish market open from 6 AM to 6 PM Monday through Friday, and 8 AM to 4 PM on Saturdays. For more details, please contact me.</p>
+        
+        <h2>Contact Me At</h2>
+        <p><a href="mailto:indisfisher@gmail.com">Indisfisher@gmail.com</a></p>
+    </div>
+
+    <!-- Chatbot -->
+    <div id="chatbot">
+        <div id="chatbot-header" onclick="toggleChatbot()">Chat with us!</div>
+        <div id="chatbot-messages"></div>
+        <div id="chatbot-input">
+            <input type="text" id="user-input" placeholder="Type a message..." />
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 Indis Fishery. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleChatbot() {
+            const chatbot = document.getElementById('chatbot');
+            chatbot.style.display = chatbot.style.display === 'none' ? 'flex' : 'none';
+        }
+
+        function sendMessage() {
+            const userInput = document.getElementById('user-input');
+            const messages = document.getElementById('chatbot-messages');
+            const messageText = userInput.value.trim();
+
+            if (messageText) {
+                const userMessage = document.createElement('div');
+                userMessage.textContent = `You: ${messageText}`;
+                messages.appendChild(userMessage);
+
+                // Basic keyword responses
+                let botResponse = "I'm sorry, I didn't understand that.";
+                if (messageText.toLowerCase().includes("hello")) {
+                    botResponse = "Hello! How can I help you today?";
+                } else if (messageText.toLowerCase().includes("services")) {
+                    botResponse = "We offer catering, boat rentals, and a fish market!";
+                } else if (messageText.toLowerCase().includes("hours")) {
+                    botResponse = "We're open Monday to Friday from 6 AM to 6 PM and Saturday from 8 AM to 4 PM.";
+                }
+
+                const botMessage = document.createElement('div');
+                botMessage.textContent = `Bot: ${botResponse}`;
+                messages.appendChild(botMessage);
+                
+                userInput.value = '';
+                messages.scrollTop = messages.scrollHeight; // Auto-scroll
+            }
+        }
+    </script>
+</body>
+</html>
