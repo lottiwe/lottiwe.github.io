@@ -57,6 +57,50 @@
             text-align: center;
             border-top: 2px solid #444;
         }
+        /* Chatbot styles */
+        #chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background-color: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: flex; /* Make it visible by default */
+            flex-direction: column;
+            z-index: 1000;
+        }
+        #chatbot-header {
+            background-color: #444;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+        #chatbot-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        #chatbot-input {
+            display: flex;
+        }
+        #chatbot-input input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-top: 1px solid #ddd;
+        }
+        #chatbot-input button {
+            padding: 10px;
+            border: none;
+            background-color: #444;
+            color: white;
+            cursor: pointer;
+        }
+        #chatbot-input button:hover {
+            background-color: #575757;
+        }
     </style>
 </head>
 <body>
@@ -75,7 +119,7 @@
     </nav>
     <div class="container">
         <h2>Our Mission</h2>
-        <p>At Indis Fishery, our mission is to provide exceptional products to our clients while maintaining the highest standards of quality and integrity. We are dedicated to customer satisfaction, and fostering a positive impact on our community.</p>
+        <p>At Indis Fishery, our mission is to provide exceptional products to our clients while maintaining the highest standards of quality and integrity. We are dedicated to customer satisfaction and fostering a positive impact on our community.</p>
         
         <h2>Team</h2>
         <div class="team-member">
@@ -96,8 +140,67 @@
         <h2>Our History</h2>  
         <p>Indis Fishery was founded in 2009 with a vision to catch the best possible fish we can. Over the years, we have grown and adapted to meet the needs of our clients, always with a commitment to excellence.</p>
     </div>
+    
+    <!-- Chatbot -->
+    <div id="chatbot">
+        <div id="chatbot-header" onclick="toggleChatbot()">Chat with us!</div>
+        <div id="chatbot-messages"></div>
+        <div id="chatbot-input">
+            <input type="text" id="user-input" placeholder="Type a message..." />
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2024 Indis Fishery. All rights reserved.</p>
     </footer>
+
+    <script>
+        function toggleChatbot() {
+            const chatbot = document.getElementById('chatbot');
+            chatbot.style.display = chatbot.style.display === 'none' ? 'flex' : 'none';
+        }
+
+        function sendMessage() {
+            const userInput = document.getElementById('user-input');
+            const messages = document.getElementById('chatbot-messages');
+            const messageText = userInput.value.trim();
+
+            if (messageText) {
+                const userMessage = document.createElement('div');
+                userMessage.textContent = `You: ${messageText}`;
+                messages.appendChild(userMessage);
+
+                // Keyword responses
+                let botResponse = "I'm sorry, I didn't understand that.";
+                
+                // Responses based on user input
+                if (messageText.toLowerCase().includes("hello")) {
+                    botResponse = "Hello! How can I help you today?";
+                } else if (messageText.toLowerCase().includes("mission")) {
+                    botResponse = "Our mission is to provide exceptional products while maintaining high standards of quality and integrity.";
+                } else if (messageText.toLowerCase().includes("team")) {
+                    botResponse = "Our team includes Bobby, our Fish Caller, and John, our Chief Technology Officer.";
+                } else if (messageText.toLowerCase().includes("history")) {
+                    botResponse = "Indis Fishery was founded in 2009 with a vision to catch the best possible fish.";
+                } else if (messageText.toLowerCase().includes("bobby")) {
+                    botResponse = "Bobby is our Fish Caller, great at attracting fish with his skills.";
+                } else if (messageText.toLowerCase().includes("john")) {
+                    botResponse = "John is our Chief Technology Officer, overseeing all technical aspects.";
+                } else if (messageText.toLowerCase().includes("fish clicker")) {
+                    botResponse = "Fish Clicker is a fun game where you catch fish by clicking on them. To play, just click on the fish that appear!";
+                } else if (messageText.toLowerCase().includes("about")) {
+                    botResponse = "Indis Fishery is dedicated to providing high-quality seafood while ensuring sustainability.";
+                }
+
+                const botMessage = document.createElement('div');
+                botMessage.textContent = `Bot: ${botResponse}`;
+                messages.appendChild(botMessage);
+                
+                userInput.value = '';
+                messages.scrollTop = messages.scrollHeight; // Auto-scroll
+            }
+        }
+    </script>
 </body>
 </html>
