@@ -162,9 +162,18 @@
                 userMessage.textContent = `You: ${messageText}`;
                 messages.appendChild(userMessage);
 
-                // Simulate a response from the bot
+                // Basic keyword responses
+                let botResponse = "I'm sorry, I didn't understand that.";
+                if (messageText.toLowerCase().includes("hello")) {
+                    botResponse = "Hello! How can I help you today?";
+                } else if (messageText.toLowerCase().includes("services")) {
+                    botResponse = "We offer catering, boat rentals, and a fish market!";
+                } else if (messageText.toLowerCase().includes("hours")) {
+                    botResponse = "We're open Monday to Friday from 6 AM to 6 PM and Saturday from 8 AM to 4 PM.";
+                }
+
                 const botMessage = document.createElement('div');
-                botMessage.textContent = `Bot: Sorry, I don't have an answer for that yet!`;
+                botMessage.textContent = `Bot: ${botResponse}`;
                 messages.appendChild(botMessage);
                 
                 userInput.value = '';
