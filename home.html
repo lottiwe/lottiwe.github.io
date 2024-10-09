@@ -162,14 +162,34 @@
                 userMessage.textContent = `You: ${messageText}`;
                 messages.appendChild(userMessage);
 
-                // Basic keyword responses
+                // Keyword responses
                 let botResponse = "I'm sorry, I didn't understand that.";
+                
+                // Responses based on user input
                 if (messageText.toLowerCase().includes("hello")) {
                     botResponse = "Hello! How can I help you today?";
                 } else if (messageText.toLowerCase().includes("services")) {
                     botResponse = "We offer catering, boat rentals, and a fish market!";
                 } else if (messageText.toLowerCase().includes("hours")) {
                     botResponse = "We're open Monday to Friday from 6 AM to 6 PM and Saturday from 8 AM to 4 PM.";
+                } else if (messageText.toLowerCase().includes("about the company") || messageText.toLowerCase().includes("what is indis fishery")) {
+                    botResponse = "Indis Fishery has been serving the community since 2009, providing high-quality seafood and services with a focus on sustainability.";
+                } else if (messageText.toLowerCase().includes("staff")) {
+                    botResponse = "Our staff includes John, Sarah, and Mike. You can ask for their names for more details!";
+                } else if (messageText.toLowerCase().includes("history")) {
+                    botResponse = "Indis Fishery was founded in 2009 and has grown steadily, with a commitment to sustainability and community service.";
+                } else if (messageText.toLowerCase().includes("when was the company founded") || messageText.toLowerCase().includes("founding year")) {
+                    botResponse = "Indis Fishery was founded in 2009.";
+                } else if (messageText.toLowerCase().includes("john")) {
+                    botResponse = "John is our Head Fisherman, known for his expertise and passion for fishing.";
+                } else if (messageText.toLowerCase().includes("sarah")) {
+                    botResponse = "Sarah is our Catering Manager, who ensures every event is memorable.";
+                } else if (messageText.toLowerCase().includes("mike")) {
+                    botResponse = "Mike is our Boat Rentals Coordinator, who manages our fleet with care.";
+                } else if (messageText.toLowerCase().includes("about")) {
+                    botResponse = "Indis Fishery has been serving the community since 2009, providing high-quality seafood and services with a focus on sustainability. We are dedicated to promoting responsible fishing practices and ensuring the freshest products for our customers.";
+                } else if (messageText.toLowerCase().includes("fish clicker")) {
+                    botResponse = "Fish Clicker is a fun and engaging game where you catch fish by clicking on them! To play, simply click on the fish as they appear on the screen to earn points. The more fish you catch, the higher your score!";
                 }
 
                 const botMessage = document.createElement('div');
