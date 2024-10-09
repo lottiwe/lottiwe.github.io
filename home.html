@@ -61,6 +61,50 @@
             text-align: center;
             border-top: 2px solid #ddd;
         }
+        /* Chatbot styles */
+        #chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background-color: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            z-index: 1000;
+        }
+        #chatbot-header {
+            background-color: #444;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+        #chatbot-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        #chatbot-input {
+            display: flex;
+        }
+        #chatbot-input input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-top: 1px solid #ddd;
+        }
+        #chatbot-input button {
+            padding: 10px;
+            border: none;
+            background-color: #444;
+            color: white;
+            cursor: pointer;
+        }
+        #chatbot-input button:hover {
+            background-color: #575757;
+        }
     </style>
 </head>
 <body>
@@ -87,8 +131,47 @@
         <h2>Contact Me At</h2>
         <p><a href="mailto:indisfisher@gmail.com">Indisfisher@gmail.com</a></p>
     </div>
+
+    <!-- Chatbot -->
+    <div id="chatbot">
+        <div id="chatbot-header" onclick="toggleChatbot()">Chat with us!</div>
+        <div id="chatbot-messages"></div>
+        <div id="chatbot-input">
+            <input type="text" id="user-input" placeholder="Type a message..." />
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    
     <footer>
         <p>&copy; 2024 Indis Fishery. All rights reserved.</p>
     </footer>
+
+    <script>
+        function toggleChatbot() {
+            const chatbot = document.getElementById('chatbot');
+            chatbot.style.display = chatbot.style.display === 'none' ? 'flex' : 'none';
+        }
+
+        function sendMessage() {
+            const userInput = document.getElementById('user-input');
+            const messages = document.getElementById('chatbot-messages');
+            const messageText = userInput.value.trim();
+
+            if (messageText) {
+                const userMessage = document.createElement('div');
+                userMessage.textContent = `You: ${messageText}`;
+                messages.appendChild(userMessage);
+
+                // Simulate a response from the bot
+                const botMessage = document.createElement('div');
+                botMessage.textContent = `Bot: Sorry, I don't have an answer for that yet!`;
+                messages.appendChild(botMessage);
+                
+                userInput.value = '';
+                messages.scrollTop = messages.scrollHeight; // Auto-scroll
+            }
+        }
+    </script>
 </body>
 </html>
+
