@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indis Special Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background: linear-gradient(to right, #FFB3BA, #FFDFBA, #FFFFBA, #BAFFC9, #BAE1FF);
+        }
+        header {
+            background-color: #FFB3BA; /* Pastel Pink */
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            margin: 0;
+            padding: 10px;
+            background-color: #6FA3EF; /* Pastel Blue */
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: inline-block;
+            border-radius: 5px;
+        }
+        nav ul li a:nth-child(1) { background-color: #FFB3BA; } /* Pastel Red */
+        nav ul li a:nth-child(2) { background-color: #FFA07A; } /* More Vibrant Pastel Orange */
+        nav ul li a:nth-child(3) { background-color: #FFF9C4; color: #7D7D7D; } /* More Yellow Pastel Yellow with Gray Text */
+        nav ul li a:nth-child(4) { background-color: #BAFFC9; } /* Pastel Green */
+        nav ul li a:nth-child(5) { background-color: #BAE1FF; } /* Pastel Blue */
+        
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 60px;
+        }
+        footer {
+            background-color: #BAE1FF; /* Pastel Blue */
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            border-top: 2px solid #FFDFBA; /* Pastel Orange */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Indis Special Page</h1>
+        <p>This is indis fun and colorful page.</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="game.html">Fish Clicker</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h2>Welcome!</h2>
+        <p>We are excited to have you here. Please enjoy Indis special colorful page because all the other pages were too boring.</p>
+    </div>
+    <footer>
+        <p>&copy; 2024 Indis Colorful Page. All rights reserved.</p>
+    </footer>
+</body>
+</html>
